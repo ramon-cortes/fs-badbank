@@ -5,6 +5,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3141;
+import chalk from 'chalk';
 // Probar y usar? ↓
 //app.use(express.urlencoded({ extended: true }));
 
@@ -14,4 +15,4 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT, () => console.log(chalk.inverse(`Listening on port ${PORT}`)));
