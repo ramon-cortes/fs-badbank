@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3141;
 
 //FIRST TEST
 app.get('/', (req, res) => {
-  //console.log(process.env.HEROKU_ID);
+  console.log('someone hit /');
   res.send('Hello World');
 });
 
