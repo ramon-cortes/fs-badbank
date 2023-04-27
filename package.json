@@ -1,0 +1,19 @@
+{
+  "name": "0-ern",
+  "version": "1.0.0",
+  "description": "Final project for the course \"Professional Certificate in Coding: Full Stack Development with MERN - July 2022\".",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "ramon-cortes",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
