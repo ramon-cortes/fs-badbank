@@ -11,7 +11,7 @@ import chalk from 'chalk';
 
 //FIRST TEST
 app.get('/', (req, res) => {
-  console.log('someone hit /');
+  console.log(chalk.redBright('someone hit root'));
   res.send('Hello World');
 });
 
