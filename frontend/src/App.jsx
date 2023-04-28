@@ -6,6 +6,8 @@ function App() {
       Bad Bank in Heroku
       <br />
       viernes 28
+      <br />
+      10.36
     </div>
   );
 }
