@@ -23,7 +23,7 @@ import Balance from './components/balance';
 import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
-const LOCATION = process.env.PORT || 'http://localhost:3141';
+const LOCATION = process.env.REACT_APP_BASE_URL || 'http://localhost:3141';
 
 function App() {
   const [status, setStatus] = useState({
@@ -32,7 +32,7 @@ function App() {
     admin: false,
     balance: 0
   });
-  console.log(LOCATION);
+  console.log(JSON.stringify(process.env));
 
   // Checking if user is already signed in
   useEffect(() => {
