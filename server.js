@@ -15,17 +15,17 @@ import chalk from 'chalk';
 
 // -------------------FIREBASE-------------------
 //import admin from 'firebase-admin';
-/*import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyCymVXSlP0QFQrJOngL6C4i_C1n9ioNUkQ",
-  authDomain: "test1-95bda.firebaseapp.com",
-  projectId: "test1-95bda",
-  storageBucket: "test1-95bda.appspot.com",
-  messagingSenderId: "16962749202",
-  appId: "1:16962749202:web:6169669f2cee8d26b169cb"
+  apiKey: process.env.FIREBASE_APIKEY,
+  authDomain: process.env.FIREBASE_AUTHDOMAIN,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.FIREBASE_MSGSENDERID,
+  appId: process.env.FIREBASE_APPID
 };
-const firebaseApp = initializeApp(firebaseConfig);*/
+const firebaseApp = initializeApp(firebaseConfig);
 // -------------------FIREBASE-------------------
 
 
@@ -73,6 +73,5 @@ app.get('/basictest', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(chalk.inverse(`Listening on port ${PORT}`));
-  console.log('firebase api key: ' + process.env.FIREBASE_APIKEY);
   //console.log(__dirname + '/frontend/index.html');
 });
