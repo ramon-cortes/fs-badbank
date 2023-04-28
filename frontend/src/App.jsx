@@ -1,6 +1,16 @@
 import './App.css';
+//import * as dotenv from 'dotenv';
+//dotenv.config();
+
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Gets app path
+/*import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);*/
+
 import axios from 'axios';
 import NavBar from './components/navbar';
 import Inicio from './components/inicio';
@@ -13,6 +23,8 @@ import Balance from './components/balance';
 import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
+const LOCATION = process.env.APP_LOCATION || 'http://localhost:3141';
+
 function App() {
   const [status, setStatus] = useState({
     log: false, 
@@ -20,10 +32,12 @@ function App() {
     admin: false,
     balance: 0
   });
-
+  console.log(LOCATION);
 
   // Checking if user is already signed in
-  /*useEffect(() => {
+  useEffect(() => {
+    //http://ramon-cortesfullstackbankingap.herokuapp.com
+    //http://localhost:3141
     const config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -46,7 +60,7 @@ function App() {
         //setStatus({...status, log: false});
     });
   }, []);
-  */
+  
 
   /*return (
     <div>

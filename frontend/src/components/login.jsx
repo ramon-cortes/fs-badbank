@@ -15,9 +15,9 @@ function axiosLogin(status, setStatus, setError) {
     .then((response) => {
       //console.log(JSON.stringify(response.data));
       // Login successful
-      if (response.data.user) {
+      if (response.data.email) {
         //console.log(JSON.stringify(response));
-        setStatus({log: true, user: response.data.user, admin: response.data.admin, balance: response.data.balance});
+        setStatus({log: true, user: response.data.email, admin: response.data.admin, balance: response.data.balance});
         document.getElementById('email').value = '';
         document.getElementById('password').value = '';
         setError('');

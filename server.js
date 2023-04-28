@@ -5,12 +5,16 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3141;
+
+// Gets app path
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 import chalk from 'chalk';
 // Probar y usar? ↓
+//app.use(express.json());
 //app.use(express.urlencoded({ extended: true }));
 
 // -------------------FIREBASE-------------------
@@ -47,7 +51,7 @@ app.get('/basictest', (req, res) => {
 // -----------------ROUTES-----------------
 
 // Already logged in?
-/*app.get('/alreadyloggedin', async (req, res) => {
+app.get('/alreadyloggedin', async (req, res) => {
   console.log(chalk.underline(`/alreadyloggedin/`));
   let userData = {};
   let loggedin = false;
@@ -67,7 +71,73 @@ app.get('/basictest', (req, res) => {
     }
     res.send(userData);
   });  
-});*/
+});
+
+// Login user
+app.get('/login/:email/:password', async (req, res) => {
+  console.log(chalk.underline(`/login/`));
+  const email = req.params.email;
+  const password = req.params.password;
+  const auth = getAuth();
+  let user = {};
+  // -----Mongo DAL-----
+  /*const insertResult = await dalActivity(email, 'login');
+  if (insertResult.acknowledged) {
+    console.log(chalk.green(`MongoDB Success: Login registered`));
+  } else {
+    console.log(chalk.red('MongoDB Error'));
+  }
+  const userInfo = await dalRead(email);
+  const userInfoBasic = {
+    user: userInfo[0].email,
+    admin: userInfo[0].admin,
+    balance: userInfo[0].balance
+  };*/
+  //console.log(chalk.redBright(JSON.stringify(userInfoBasic)));
+  // -----Mongo DAL-----
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      user = userCredential.user;
+      //console.log(chalk.redBright(JSON.stringify(user.email)));
+      console.log(chalk.green(`user ${req.params.email} logged in`));
+      res.send(user);
+    })
+    .catch((error) => {
+      //errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(chalk.red(`user ${req.params.email} ${errorMessage}`));
+      res.send(errorMessage);
+    });  
+  //console.log(chalk.redBright(JSON.stringify(user)));
+});
+
+// Logout user
+app.get('/logout/:email', async (req, res) => {
+  console.log(chalk.underline(`/logout/`));
+  const email = req.params.email;
+  const auth = getAuth();
+  // -------Mongo DAL-------
+  /*const insertResult = await dalActivity(email, 'logout');
+  if (insertResult.acknowledged) {
+    console.log(chalk.green(`MongoDB Success: Logout registered`));
+  } else {
+    console.log(chalk.red('MongoDB Error'));
+  }*/
+  // -------Mongo DAL-------
+
+  // Todavía dá error de sincronía
+  // "Cannot set headers after they are sent to the client"
+  signOut(auth)
+    .then(() => {
+      console.log(chalk.yellow(`user logged out`));
+      res.send(`user logged out`);
+    })
+    .catch((error) => {
+      console.log(chalk.red(`Error in logging out`));
+      res.send(`Error in logging out`);
+    });  
+});
 
 
 
