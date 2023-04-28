@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap');
+
+body {
+  font-family: 'Shantell Sans';
+  margin: 0px;
+}
+
+.navbar {
+  background-color: gold;
+  display: grid;
+  grid-template-columns: 125px 3fr 1.5fr;
+  height: 100px;
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.smaller {
+  font-size: 0.8rem;
+}
+
+.menu-item {
+  margin: 20px 5px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  border: 2px solid gold;
+  border-radius: 8px;
+}
+
+.link:hover {
+  background-color: rgb(209, 178, 0);
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.link:active {
+  color: rgb(209, 178, 0);
+  background-color: rgb(0, 0, 0);
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.login {
+  width: 50px;
+}
+
+.signup-error {
+  color: rgb(187, 0, 0);
+}
+
+.popup {
+  display: none;
+  background-color: gold;
+  padding: 5px;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px black;
+}
+
+.popup-close {
+  background-color: white;
+  padding: 1px 4px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  background-color: lightgrey;
+}
+
+.popup-close:active {
+  background-color: black;
+  color: white;
+}

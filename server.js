@@ -13,6 +13,21 @@ import chalk from 'chalk';
 // Probar y usar? ↓
 //app.use(express.urlencoded({ extended: true }));
 
+// -------------------FIREBASE-------------------
+//import admin from 'firebase-admin';
+/*import { initializeApp } from 'firebase/app';
+import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+const firebaseConfig = {
+  apiKey: "AIzaSyCymVXSlP0QFQrJOngL6C4i_C1n9ioNUkQ",
+  authDomain: "test1-95bda.firebaseapp.com",
+  projectId: "test1-95bda",
+  storageBucket: "test1-95bda.appspot.com",
+  messagingSenderId: "16962749202",
+  appId: "1:16962749202:web:6169669f2cee8d26b169cb"
+};
+const firebaseApp = initializeApp(firebaseConfig);*/
+// -------------------FIREBASE-------------------
+
 
 // Serve static files
 app.use(express.static('frontend/build'));
@@ -29,9 +44,35 @@ app.get('/basictest', (req, res) => {
   res.send('Basic Test works !');
 });
 
+// -----------------ROUTES-----------------
+
+// Already logged in?
+/*app.get('/alreadyloggedin', async (req, res) => {
+  console.log(chalk.underline(`/alreadyloggedin/`));
+  let userData = {};
+  let loggedin = false;
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in
+      //const uid = user.uid;
+      //console.log('user is LOGGED IN');
+      userData = user;
+      loggedin = true;
+      //return res.send({ loggedin: true, user });
+    } else {
+      // User is signed out
+      //console.log('user is NOT logged in');
+      //return res.send({ loggedin: false });
+    }
+    res.send(userData);
+  });  
+});*/
+
 
 
 app.listen(PORT, () => {
   console.log(chalk.inverse(`Listening on port ${PORT}`));
+  console.log('firebase api key: ' + process.env.FIREBASE_APIKEY);
   //console.log(__dirname + '/frontend/index.html');
 });
