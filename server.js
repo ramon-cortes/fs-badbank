@@ -15,8 +15,8 @@ import chalk from 'chalk';
 
 
 // Serve static files
-//app.use(express.static('frontend/build'));
-app.use(express.static(__dirname + '/frontend/build/index.html'));
+app.use(express.static('frontend/build'));
+//app.use(express.static(__dirname + '/frontend/build/index.html'));
 //FIRST TEST
 /*app.get('*', (req, res) => {
   //res.sendFile(__dirname + '/frontend/index.html');
