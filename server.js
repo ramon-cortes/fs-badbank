@@ -13,14 +13,15 @@ import chalk from 'chalk';
 // Probar y usar? ↓
 //app.use(express.urlencoded({ extended: true }));
 
+// Serve static files
+//app.use(express.static('frontend/build'));
 //FIRST TEST
 app.get('/', (req, res) => {
   //res.sendFile(__dirname + '/frontend/index.html');
   res.sendFile(__dirname + '/frontend/build/index.html');
 });
 
-// Serve static files
-//app.use(express.static('frontend'));
+
 
 app.listen(PORT, () => {
   console.log(chalk.inverse(`Listening on port ${PORT}`));
