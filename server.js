@@ -15,11 +15,18 @@ import chalk from 'chalk';
 
 
 // Serve static files
-app.use(express.static('frontend/build'));
+//app.use(express.static('frontend/build'));
+app.use(express.static(__dirname + '/frontend/build/index.html'));
 //FIRST TEST
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
   //res.sendFile(__dirname + '/frontend/index.html');
   res.sendFile(__dirname + '/frontend/build/index.html');
+});*/
+
+// Basic Test
+app.get('/basictest', (req, res) => {
+  console.log(chalk.underline('Basic Test works !'));
+  res.send('Basic Test works !');
 });
 
 

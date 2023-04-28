@@ -7,7 +7,7 @@ function App() {
       <br />
       viernes 28
       <br />
-      10.50
+      11.10
     </div>
   );
 }
