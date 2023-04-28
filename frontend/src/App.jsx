@@ -23,7 +23,7 @@ import Balance from './components/balance';
 import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
-const LOCATION = process.env.APP_LOCATION || 'http://localhost:3141';
+const LOCATION = process.env.PORT || 'http://localhost:3141';
 
 function App() {
   const [status, setStatus] = useState({
