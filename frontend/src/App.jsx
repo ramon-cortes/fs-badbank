@@ -37,7 +37,6 @@ function App() {
     admin: false,
     balance: 0
   });
-  console.log(LOCATION);
 
   // Checking if user is already signed in
   useEffect(() => {
@@ -46,7 +45,7 @@ function App() {
     const config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `http://localhost:3141/alreadyloggedin`,
+      url: `${LOCATION}/alreadyloggedin`,
       headers: { }
     };
     axios.request(config)
