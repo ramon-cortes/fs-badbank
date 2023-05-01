@@ -73,6 +73,49 @@ app.get('/alreadyloggedin', async (req, res) => {
   });  
 });
 
+//Sign Up
+app.get('/signup/:name/:email/:password/:admin', async (req, res) => {
+  console.log(chalk.underline(`/signup/`));
+  const name = req.params.name;
+  const email = req.params.email;
+  const password = req.params.password;
+  let admin = false;
+  if (req.params.admin === 'true') admin = true;
+  const auth = getAuth();
+  let created = false;
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;  
+      created = true;    
+      if (admin) {
+        console.log(chalk.green(`Firebase: Admin account created: ${name}, ${email}`));      
+      } else {
+        console.log(chalk.green(`Firebase: Normal account created: ${name}, ${email}`));      
+      }
+      res.send(true);  
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(chalk.red(`Account NOT created: ${errorMessage}`));
+      res.send(`${errorCode}: ${errorMessage}`);
+    });
+  // --------------Mongo DAL--------------
+  /*if (created) {
+    const insertResult = await dalCreateUser(name, email, password, admin);
+    if (insertResult.acknowledged) {
+      console.log(chalk.green(`MongoDB Success:
+        name: ${name}, 
+        email: ${email}, 
+        admin: ${admin}`));
+    } else {
+      console.log(chalk.red('MongoDB: Error'));
+    }
+  }*/
+  // --------------Mongo DAL--------------
+});
+
 // Login user
 app.get('/login/:email/:password', async (req, res) => {
   console.log(chalk.underline(`/login/`));
