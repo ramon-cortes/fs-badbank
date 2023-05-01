@@ -80,6 +80,7 @@ app.get('/login/:email/:password', async (req, res) => {
   const password = req.params.password;
   const auth = getAuth();
   let user = {};
+  let signResult = '';
   // -----Mongo DAL-----
   /*const insertResult = await dalActivity(email, 'login');
   if (insertResult.acknowledged) {
@@ -95,21 +96,28 @@ app.get('/login/:email/:password', async (req, res) => {
   };*/
   //console.log(chalk.redBright(JSON.stringify(userInfoBasic)));
   // -----Mongo DAL-----
+  
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       user = userCredential.user;
       //console.log(chalk.redBright(JSON.stringify(user.email)));
       console.log(chalk.green(`user ${req.params.email} logged in`));
-      res.send(user);
+      //res.send(user);
+      signResult = user;
     })
     .catch((error) => {
       //errorCode = error.code;
       const errorMessage = error.message;
       console.log(chalk.red(`user ${req.params.email} ${errorMessage}`));
-      res.send(errorMessage);
-    });  
+      //res.send(errorMessage);
+      signResult = errorMessage;
+    })
+    .finally(() => {
+      res.send(signResult);
+    });
   //console.log(chalk.redBright(JSON.stringify(user)));
+  
 });
 
 // Logout user
@@ -117,6 +125,7 @@ app.get('/logout/:email', async (req, res) => {
   console.log(chalk.underline(`/logout/`));
   const email = req.params.email;
   const auth = getAuth();
+  let signResult = '';
   // -------Mongo DAL-------
   /*const insertResult = await dalActivity(email, 'logout');
   if (insertResult.acknowledged) {
@@ -131,11 +140,16 @@ app.get('/logout/:email', async (req, res) => {
   signOut(auth)
     .then(() => {
       console.log(chalk.yellow(`user logged out`));
-      res.send(`user logged out`);
+      //res.send(`user logged out`);
+      signResult = `user logged out`;
     })
     .catch((error) => {
       console.log(chalk.red(`Error in logging out`));
-      res.send(`Error in logging out`);
+      //res.send(`Error in logging out`);
+      signResult = `Error in logging out`;
+    })
+    .finally(() => {
+      res.send(signResult);
     });  
 });
 

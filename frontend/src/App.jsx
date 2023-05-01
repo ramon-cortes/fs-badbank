@@ -1,16 +1,6 @@
 import './App.css';
-//import * as dotenv from 'dotenv';
-//dotenv.config();
-
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-// Gets app path
-/*import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);*/
-
 import axios from 'axios';
 import NavBar from './components/navbar';
 import Inicio from './components/inicio';
@@ -24,7 +14,7 @@ import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
 let LOCATION = '';
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
   LOCATION = 'http://ramon-cortesfullstackbankingap.herokuapp.com';
 } else {
   LOCATION = 'http://localhost:3141';
