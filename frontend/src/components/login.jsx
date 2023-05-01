@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ValueContext } from '../App';
 
-function axiosLogin(status, setStatus, setError) {  
+function axiosLogin(status, setStatus, setError, LOCATION) {  
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-
+  
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `http://localhost:3141/login/${email}/${password}`,
+    url: `${LOCATION}/login/${email}/${password}`,
     headers: { }
   };
   axios.request(config)
@@ -33,6 +34,7 @@ function axiosLogin(status, setStatus, setError) {
 }
 
 function LoginOrLogout({ status, setStatus }) {
+  const LOCATION = useContext(ValueContext);
   const [error, setError] = useState('');
   if (!status.log) {
     return (
@@ -43,7 +45,7 @@ function LoginOrLogout({ status, setStatus }) {
         <br />
         <input id="password" type="password" placeholder="Password"/>
         <br />
-        <button onClick={() => axiosLogin(status, setStatus, setError)}>Login</button>
+        <button onClick={() => axiosLogin(status, setStatus, setError, LOCATION)}>Login</button>
         <br />
         <div className='signup-error'>
           {error}

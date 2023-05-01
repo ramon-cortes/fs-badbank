@@ -1,5 +1,6 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext  } from 'react';
+//import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './components/navbar';
@@ -13,6 +14,7 @@ import Balance from './components/balance';
 import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
+export const ValueContext = createContext(null);
 let LOCATION = '';
 if (process.env.NODE_ENV === "production") {
   LOCATION = 'http://ramon-cortesfullstackbankingap.herokuapp.com';
@@ -63,6 +65,7 @@ function App() {
   );*/
   return (
     <BrowserRouter>
+    <ValueContext.Provider value={LOCATION} >
       Mi prueba: 
       <NavBar status={status} setStatus={setStatus}/>
       <Routes>
@@ -76,6 +79,7 @@ function App() {
         <Route path='/alldata' element={<AllData/>} />
       </Routes>
       <SignUpSuc status={status}/>
+    </ValueContext.Provider>
     </BrowserRouter>
   );
 }

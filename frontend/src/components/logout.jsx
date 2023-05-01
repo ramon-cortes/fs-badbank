@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ValueContext } from '../App';
 
-
-function axiosLogout(status, setStatus) {
+function axiosLogout(status, setStatus, LOCATION) {
   const email = status.user;
   const config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `http://localhost:3141/logout/${email}`,
+    url: `${LOCATION}/logout/${email}`,
     headers: { }
   };
   axios.request(config)
@@ -25,10 +25,11 @@ function axiosLogout(status, setStatus) {
 
 
 export default function Logout({ status, setStatus }) {
+  const LOCATION = useContext(ValueContext);
   //const response = axiosLogout(status, setStatus);
 
   useEffect(() => {
-    const response = axiosLogout(status, setStatus);
+    const response = axiosLogout(status, setStatus, LOCATION);
   }, []);
 
   function LoggedOut() {
