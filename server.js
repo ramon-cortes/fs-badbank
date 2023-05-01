@@ -2,17 +2,20 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import cors from 'cors';
+import chalk from 'chalk';
+import { dalTest, dalCreateUser } from './dal.js';
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3141;
 
+
 // Gets app path
-import { fileURLToPath } from 'url';
+/*import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(__filename);*/
 
-import chalk from 'chalk';
+
 // Probar y usar? ↓
 //app.use(express.json());
 //app.use(express.urlencoded({ extended: true }));
@@ -42,9 +45,15 @@ app.use(express.static('frontend/build'));
   res.sendFile(__dirname + '/frontend/build/index.html');
 });*/
 
-// Basic Test
-app.get('/basictest', (req, res) => {
-  console.log(chalk.underline('Basic Test works !'));
+// Mongo Write Test
+app.get('/mongotest', async (req, res) => {
+  console.log(chalk.underline('/mongotest'));
+  const insertResult = await dalTest();
+  if (insertResult.acknowledged) {
+    console.log(chalk.green(`MongoDB Success: ${JSON.stringify(insertResult)}`));
+  } else {
+    console.log(chalk.red(`MongoDB: Error ${JSON.stringify(insertResult)}`));
+  }
   res.send('Basic Test works !');
 });
 
@@ -83,11 +92,11 @@ app.get('/signup/:name/:email/:password/:admin', async (req, res) => {
   if (req.params.admin === 'true') admin = true;
   const auth = getAuth();
   let created = false;
-  createUserWithEmailAndPassword(auth, email, password)
+  await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;  
-      created = true;    
+      created = true;
       if (admin) {
         console.log(chalk.green(`Firebase: Admin account created: ${name}, ${email}`));      
       } else {
@@ -102,7 +111,8 @@ app.get('/signup/:name/:email/:password/:admin', async (req, res) => {
       res.send(`${errorCode}: ${errorMessage}`);
     });
   // --------------Mongo DAL--------------
-  /*if (created) {
+  //console.log(`created? ${created}`);
+  if (created) {
     const insertResult = await dalCreateUser(name, email, password, admin);
     if (insertResult.acknowledged) {
       console.log(chalk.green(`MongoDB Success:
@@ -112,7 +122,7 @@ app.get('/signup/:name/:email/:password/:admin', async (req, res) => {
     } else {
       console.log(chalk.red('MongoDB: Error'));
     }
-  }*/
+  }
   // --------------Mongo DAL--------------
 });
 
