@@ -3,7 +3,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import chalk from 'chalk';
-import { dalTest, dalCreateUser, dalActivity, dalRead } from './dal.js';
+import { dalTest, dalCreateUser, dalActivity, dalRead, dalTransaction } from './dal.js';
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3141;
@@ -201,6 +201,22 @@ app.get('/logout/:email', async (req, res) => {
     console.log(chalk.red('MongoDB Error'));
   }
   // ----------Mongo DAL----------
+});
+
+// Transaction
+app.get('/transaction/:email/:amount', async (req, res) => {
+  console.log(chalk.underline(`/transaction/`));
+  const email = req.params.email;
+  const amount = req.params.amount;
+  // ----------Mongo DAL----------
+  const updatedUser = await dalTransaction(email, amount); 
+  const userInfoBasic = {
+    email: updatedUser[0].email,
+    admin: updatedUser[0].admin,
+    balance: updatedUser[0].balance
+  };  
+  // ----------Mongo DAL----------
+  res.send(userInfoBasic);
 });
 
 

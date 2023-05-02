@@ -103,5 +103,27 @@ export async function dalRead(thisEmail) {
 }
 
 // UPDATE
-
+export async function dalTransaction(thisEmail, amount) {
+  await client.connect();
+  console.log(chalk.magenta(`MongoDB connected: ${dbName}-${dbCollectionName}`));
+  const db = client.db(dbName);  
+  const collection = db.collection(dbCollectionName);
+  const amountInNumber = Number(amount);
+  let dbContents = await collection.find({ email: thisEmail }).toArray();
+  const currentBalance = dbContents[0].balance;
+  //console.log(chalk.redBright(currentBalance, typeof(currentBalance)));
+  const newBalance = currentBalance + amountInNumber;
+  //console.log(chalk.redBright(`New Balance ${newBalance}`));
+  const dbResult = await collection.updateOne({ email: thisEmail }, { $set: { balance: newBalance } });
+  dbContents = await collection.find({ email: thisEmail }).toArray();
+  //console.log(chalk.redBright(JSON.stringify(dbContents)));
+  console.log(chalk.redBright(`MongoDB Info sent: 
+    email: ${dbContents[0].email}, 
+    admin: ${dbContents[0].admin},
+    balance: ${dbContents[0].balance}`));
+  client.close();
+  //setTimeout(() => {client.close()}, adjustment);
+  //console.log('dbContents:', JSON.stringify(dbContents));
+  return dbContents;
+}
 

@@ -1,6 +1,36 @@
-import { useState } from "react";
+import axios from 'axios';
+import { useState, useContext } from "react";
+import { ValueContext } from '../App';
+
+function axiosTransaction(amount, status, setStatus, setError, LOCATION) {
+  const config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `${LOCATION}/transaction/${status.user}/${amount}`,
+    headers: { }
+  };
+  axios.request(config)
+    .then((response) => {
+      //console.log(JSON.stringify(response.data));
+      // Login successful
+      if (response.data.email) {
+        //console.log(JSON.stringify(response));
+        setStatus({...status, balance: response.data.balance});
+        setError('');
+      } else {
+        //console.log(response.data);
+        setError(response.data);
+      }
+    })
+    .catch((error) => {
+      //console.log(error);
+      setError('Error making Transaction');
+    });
+}
 
 function Contents({ action, status, setStatus }) {
+  const LOCATION = useContext(ValueContext);
+  const [error, setError] = useState('');
   const [disabledButton, setDisabledButton] = useState(true);
 
 
@@ -20,18 +50,16 @@ function Contents({ action, status, setStatus }) {
   }
 
   function makeTransaction() {
+    const transactionAmount = Number(document.getElementById('carddw-input').value);
+    let balance = 0;
     if (action === 'Deposit') {
-      console.log('making deposit...');
-      console.log('balance: ' + status.balance);
-      const depositAmount = Number(document.getElementById('carddw-input').value);
-      console.log('trying to deposit ' + depositAmount);
-      let balance = status.balance + depositAmount;
-      setStatus({...status, balance});
-      //AQUÍ VOY
-      // Actualizar Mongo cada deposit? o sólo al hacer logout?
+      //balance = status.balance + transactionAmount;
+      axiosTransaction(transactionAmount, status, setStatus, setError, LOCATION);
     } else {
-
+      //balance = status.balance - transactionAmount;
+      axiosTransaction(-transactionAmount, status, setStatus, setError, LOCATION);
     }
+    
   }
   
   if (status.log) {
