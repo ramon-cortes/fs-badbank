@@ -80,8 +80,8 @@ export async function dalActivity(email, action) {
     date
   };
   const insertResult = await collection.insertOne(insertThis);
-  //await client.close();
-  setTimeout(() => {client.close()}, adjustment);
+  client.close();
+  //setTimeout(() => {client.close()}, adjustment);
   return insertResult; //.acknowledged
 }
 
@@ -92,7 +92,12 @@ export async function dalRead(thisEmail) {
   const db = client.db(dbName);  
   const collection = db.collection(dbCollectionName);
   const dbContents = await collection.find({ email: thisEmail }).toArray();  
-  setTimeout(() => {client.close()}, adjustment);
+  console.log(chalk.redBright(`MongoDB Info sent: 
+    email: ${dbContents[0].email}, 
+    admin: ${dbContents[0].admin},
+    balance: ${dbContents[0].balance}`));
+  client.close();
+  //setTimeout(() => {client.close()}, adjustment);
   //console.log('dbContents:', JSON.stringify(dbContents));
   return dbContents;
 }

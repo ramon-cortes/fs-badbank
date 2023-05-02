@@ -102,3 +102,47 @@ body {
   background-color: black;
   color: white;
 }
+
+.carddw {
+  position: relative;
+  left: 25%;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 250px;
+  height: 275px;
+  margin-top: 10px;
+}
+
+.carddw-header {
+  background-color: gold;
+  padding: 2px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.aligh-right {
+  padding: 2px;
+  text-align: right;
+}
+
+.carddw-contents {
+  padding: 2px;
+  text-align: center;
+  height: 80%;
+  position: relative;
+}
+
+#carddw-input {
+  font-family: 'Shantell Sans';
+  margin: 5px;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 5px;  
+}
+
+.carddw-note {
+  position: absolute;
+  bottom: 5px;
+}

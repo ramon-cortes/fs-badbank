@@ -45,7 +45,7 @@ function axiosSignUp(status, setStatus, setError, LOCATION) {
       //console.log(response.data.email);
       //console.log(response.data);
       if (response.data === true) {
-        setStatus({...status, log: true, user: email, admin});
+        setStatus({...status, log: true, user: email, admin, balance: 100});
         document.getElementById('popup').style.display = 'block';
         setTimeout(() => {
           document.getElementById('popup').style.display = 'none';
