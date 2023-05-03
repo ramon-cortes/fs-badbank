@@ -86,6 +86,7 @@ export async function dalActivity(email, action) {
 }
 
 // READ
+// dalRead
 export async function dalRead(thisEmail) {
   await client.connect();
   console.log(chalk.magenta(`MongoDB connected: ${dbName}-${dbCollectionName}`));
@@ -101,6 +102,34 @@ export async function dalRead(thisEmail) {
   //console.log('dbContents:', JSON.stringify(dbContents));
   return dbContents;
 }
+// dalReadAll
+export async function dalReadAll(thisEmail) {
+  let allData = {};
+  await client.connect();
+  console.log(chalk.magenta(`MongoDB connected: ${dbName}-${dbCollectionName}`));
+  const db = client.db(dbName);  
+  const collection = db.collection(dbCollectionName);  
+  const collectionAct = db.collection(dbCollectionNameAct);
+  const dbContents = await collection.find({ email: thisEmail }).toArray();
+  allData.user = {
+    name: dbContents[0].name,
+    email: dbContents[0].email,
+    admin: dbContents[0].admin,
+    balance: dbContents[0].balance,
+  }
+  const dbContents2 = await collection.find({}).toArray();
+  allData.allUsers = dbContents2;
+
+  const dbContents3 = await collectionAct.find({}).toArray();
+  allData.activity = dbContents3;
+  
+  console.log(chalk.redBright(`MongoDB ALL Info sent: 
+    user, allUsers, activity`));
+  
+  //console.log('dbContents:', JSON.stringify(dbContents));
+  client.close();
+  return allData;
+}
 
 // UPDATE
 export async function dalTransaction(thisEmail, amount) {
@@ -115,6 +144,12 @@ export async function dalTransaction(thisEmail, amount) {
   const newBalance = currentBalance + amountInNumber;
   //console.log(chalk.redBright(`New Balance ${newBalance}`));
   const dbResult = await collection.updateOne({ email: thisEmail }, { $set: { balance: newBalance } });
+  //-------Updating transaction history---------  
+  const date = new Date().toLocaleString();
+  let deposit = true;
+  amountInNumber > 0 ? deposit = true : deposit = false;
+  const dbResult2 = await collection.updateOne({ email: thisEmail }, { $push: { transactions: { deposit, amount: amountInNumber, date } }});  
+  //-------Updating transaction history---------
   dbContents = await collection.find({ email: thisEmail }).toArray();
   //console.log(chalk.redBright(JSON.stringify(dbContents)));
   console.log(chalk.redBright(`MongoDB Info sent: 

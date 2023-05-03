@@ -145,4 +145,26 @@ body {
 .carddw-note {
   position: absolute;
   bottom: 5px;
+  text-align: left;
+}
+
+table, th, tr, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 1px;
+  font-size: 0.8rem;
+}
+
+.admin-data-grid {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+
+.alldata-normal {
+  background-color: lightsalmon;
+  padding: 5px;
+}
+
+.temp-bgcolor2 {
+  background-color: lightseagreen;
 }

@@ -35,17 +35,21 @@ function Contents({ action, status, setStatus }) {
 
 
   function validateTransaction() {
-    if (action === 'Deposit') {
-      const depositAmount = Number(document.getElementById('carddw-input').value);
-      const button = document.getElementById('transaction-button');
+    const transactionAmount = Number(document.getElementById('carddw-input').value);
+    //const button = document.getElementById('transaction-button');
+    if (action === 'Deposit') {      
       //console.log('validating...');
-      if (depositAmount > 0 && depositAmount <= 1000000) {
+      if (transactionAmount > 0 && transactionAmount <= 1000000) {
         setDisabledButton(false);
       } else {
         setDisabledButton(true);
       }
     } else {
-      // validar Withdraw aquí
+      if (transactionAmount > 0 && transactionAmount <= status.balance) {
+        setDisabledButton(false);
+      } else {
+        setDisabledButton(true);
+      }
     }
   }
 
@@ -76,7 +80,10 @@ function Contents({ action, status, setStatus }) {
             {action}
           </button>
           <div className="carddw-note smaller">
-            Deposits must be positive and $1,000,000 tops
+            <ul>
+              <li>Deposits must be positive and $1,000,000 tops</li>
+              <li>Withdraws must be positive</li>
+            </ul>
           </div>
         </div>
       </>

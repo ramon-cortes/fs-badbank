@@ -19,6 +19,6 @@ export default function Deposit({ status, setStatus }) {
         Login or Signup before making Deposits
       </div>
     );
-  }*/
+  }*/ 
   
 }

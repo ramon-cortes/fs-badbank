@@ -3,7 +3,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import chalk from 'chalk';
-import { dalTest, dalCreateUser, dalActivity, dalRead, dalTransaction } from './dal.js';
+import { dalTest, dalCreateUser, dalActivity, dalRead, dalTransaction, dalReadAll } from './dal.js';
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3141;
@@ -217,6 +217,16 @@ app.get('/transaction/:email/:amount', async (req, res) => {
   };  
   // ----------Mongo DAL----------
   res.send(userInfoBasic);
+});
+
+// Alldata
+app.get('/alldata/:email', async (req, res) => {
+  console.log(chalk.underline(`/alldata/`));
+  const email = req.params.email;
+  // ----------Mongo DAL----------
+  const allData = await dalReadAll(email);
+  // ----------Mongo DAL----------
+  res.send(allData);
 });
 
 

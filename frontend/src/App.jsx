@@ -29,6 +29,7 @@ function App() {
     admin: false,
     balance: 0
   });
+  const [allData, setAllData] = useState(false);
 
   // Checking if user is already signed in
   useEffect(() => {
@@ -74,9 +75,9 @@ function App() {
         <Route path='/login' element={<Login status={status} setStatus={setStatus}/>} />
         <Route path='/logout' element={<Logout status={status} setStatus={setStatus}/>} />
         <Route path='/deposit' element={<Deposit status={status} setStatus={setStatus}/>} />
-        <Route path='/withdraw' element={<Withdraw/>} />
+        <Route path='/withdraw' element={<Withdraw status={status} setStatus={setStatus}/>} />
         <Route path='/balance' element={<Balance/>} />
-        <Route path='/alldata' element={<AllData/>} />
+        <Route path='/alldata' element={<AllData status={status} allData={allData} setAllData={setAllData} />} />
       </Routes>
       <SignUpSuc status={status}/>
     </ValueContext.Provider>

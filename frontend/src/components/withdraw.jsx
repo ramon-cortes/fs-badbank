@@ -1,21 +1,9 @@
-//import { useContext } from "react";
-//import { ValueContext } from '../App';
+import CardDW from "./carddw";
 
-export default function Withdraw() {
-  //const logStatus = useContext(ValueContext);
-  //console.log(logStatus);
-
-  function canWithdraw() {
-    if (true) {
-      return 'Not logged in. Login or Sign up in first';
-    } else {
-      return 'Withdraw page';
-    }
-  }
-  
+export default function Withdraw({ status, setStatus }) {
   return (
-    <div>
-      {canWithdraw()}
-    </div>
+    <>
+      <CardDW action='Withdraw' status={status} setStatus={setStatus} />
+    </>
   );
 }
