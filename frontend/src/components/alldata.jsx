@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { ValueContext } from '../App';
 import AllDataTable from './alldatatable';
 import AllDataNormal from './alldatanormal';
+import AllDataUsersTable from './alldatauserstable';
 
 function axiosAllData(status, setError, allData, setAllData, LOCATION) {
   const config = {
@@ -50,21 +51,17 @@ export default function AllData({ status, allData, setAllData }) {
       if (status.admin) {
         return (
           <div>
-            Admin Data
-            <br />
             <div className='admin-data-grid'>
               <div className='alldata-normal'>
                 <AllDataNormal allDataUser={allData.user}/>
                 <AllDataTable title={'Transactions'} arr={transactions.transactions} />
               </div>
-              <div className='temp-bgcolor2'>
-                users
+              <div className='alldata-admin'>
+                <AllDataUsersTable arr={allData.allUsers}/>
                 <br />
                 <AllDataTable title={'Activity'} arr={allData.activity} />
               </div>
             </div>
-            <br />
-            {JSON.stringify(allData)}
           </div>
         );
         // Normal user Data !
@@ -74,7 +71,7 @@ export default function AllData({ status, allData, setAllData }) {
           <div className='alldata-normal'>
             <AllDataNormal allDataUser={allData.user}/>
             <AllDataTable title={'Transactions'} arr={transactions.transactions} />
-          </div>        
+          </div>
         );
       }    
       // Not logged in

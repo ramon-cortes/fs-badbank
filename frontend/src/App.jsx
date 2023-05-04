@@ -10,7 +10,6 @@ import Login from './components/login';
 import Logout from './components/logout';
 import Deposit from './components/deposit';
 import Withdraw from './components/withdraw';
-import Balance from './components/balance';
 import AllData from './components/alldata';
 import SignUpSuc from './components/signupsuc';
 
@@ -67,7 +66,6 @@ function App() {
   return (
     <BrowserRouter>
     <ValueContext.Provider value={LOCATION} >
-      Mi prueba: 
       <NavBar status={status} setStatus={setStatus}/>
       <Routes>
         <Route path='/' exact element={<Inicio status={status}/>} />
@@ -76,7 +74,6 @@ function App() {
         <Route path='/logout' element={<Logout status={status} setStatus={setStatus}/>} />
         <Route path='/deposit' element={<Deposit status={status} setStatus={setStatus}/>} />
         <Route path='/withdraw' element={<Withdraw status={status} setStatus={setStatus}/>} />
-        <Route path='/balance' element={<Balance/>} />
         <Route path='/alldata' element={<AllData status={status} allData={allData} setAllData={setAllData} />} />
       </Routes>
       <SignUpSuc status={status}/>

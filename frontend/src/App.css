@@ -157,14 +157,54 @@ table, th, tr, td {
 
 .admin-data-grid {
   display: grid;
-  grid-template-columns: 40% 1fr;
+  grid-template-columns: 35% 1fr;
 }
 
 .alldata-normal {
-  background-color: lightsalmon;
+  background-color: rgb(253, 221, 152);
   padding: 5px;
 }
 
-.temp-bgcolor2 {
-  background-color: lightseagreen;
+.alldata-admin {
+  background-color: rgb(255, 213, 157);
+  padding: 5px;
+}
+
+.inicio-main {
+  background-color: rgb(253, 221, 152);
+  height: 100%;
+}
+
+.inicio-card {
+  width: 80%;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.centered {
+  text-align: center;
+}
+
+.inicio-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.inicio-flex1 {
+  text-align: center;
+}
+
+.inicio-flex2 {
+  text-align: center;
+}
+
+.inicio-flex3 {
+  text-align: center;
+}
+
+.inicio-padding {
+  padding: 5px;
 }

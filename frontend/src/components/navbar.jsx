@@ -46,7 +46,7 @@ export default function NavBar({ status, setStatus }) {
       <Link className='link' to='/'>
         <div className='logo'>
           <div>
-            bad-bank logo
+            FS Bank App
           </div>            
         </div>
       </Link>
@@ -65,11 +65,6 @@ export default function NavBar({ status, setStatus }) {
         <Link className='link' to='/withdraw'>
           <div className='menu-item'>
             Withdraw
-          </div>
-        </Link>
-        <Link className='link' to='/balance'>
-          <div className='menu-item'>
-            Balance
           </div>
         </Link>
         <Link className='link' to='/alldata'>

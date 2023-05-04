@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.4ba6e066.css",
-    "main.js": "/static/js/main.a6b0e0a1.js",
+    "main.css": "/static/css/main.36165359.css",
+    "main.js": "/static/js/main.aee4cda5.js",
+    "static/media/fs-bank-logo.gif": "/static/media/fs-bank-logo.e1158c3c9bf5e9ade35c.gif",
     "index.html": "/index.html",
-    "main.4ba6e066.css.map": "/static/css/main.4ba6e066.css.map",
-    "main.a6b0e0a1.js.map": "/static/js/main.a6b0e0a1.js.map"
+    "main.36165359.css.map": "/static/css/main.36165359.css.map",
+    "main.aee4cda5.js.map": "/static/js/main.aee4cda5.js.map"
   },
   "entrypoints": [
-    "static/css/main.4ba6e066.css",
-    "static/js/main.a6b0e0a1.js"
+    "static/css/main.36165359.css",
+    "static/js/main.aee4cda5.js"
   ]
 }
