@@ -9,11 +9,11 @@ app.use(cors());
 const PORT = process.env.PORT || 3141;
 
 
-// Gets app path
-/*import { fileURLToPath } from 'url';
+// Gets app path?
+import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);*/
+const __dirname = dirname(__filename);
 
 // ---------"Refresh" Routes------------
 app.get('*', (req, res) => {
