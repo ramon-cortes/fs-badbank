@@ -70,7 +70,9 @@ export default function Inicio({ status }) {
               npm run build in frontend folder to create build files
             </li>
             <li>
-              I really don't know or remember how Heroku recognizes the "build" folder but it works. If you know, please help me remember (<a href="mailto:ramoncortes.varios@gmail.com">ramoncortes.varios@gmail.com</a>). Since I had to make several tests, trial & errors I could not document everything as I normally do
+              Build folder served by app.use(express.static('frontend/build'))
+              <br />
+              And I had to add more static routes to work when deployed. Otherwise "refreshing" at Heroku caused a "GET" error
             </li>
             <li>
               GitHub .gitignore: In both Server & Frontend → node_modules & .env files
@@ -132,6 +134,12 @@ export default function Inicio({ status }) {
             </li>
             <li>
               I wanted to experiment a little bit with CSS, so I did not use Bootstrap on this project
+            </li>
+            <li>
+              "BadBank" imaged created by me (by looking at the image you can probably tell)
+            </li>
+            <li>
+              "FS Banking App" image downloaded from internet. I just colored it
             </li>
           </ul>
         </div>
