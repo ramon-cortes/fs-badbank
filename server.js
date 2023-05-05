@@ -16,7 +16,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // ---------"Refresh" Routes------------
+app.get('/logout', (req, res) => {
+  console.log('__dirname: ' + __dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
+app.get('/login', (req, res) => {
+  console.log('__dirname: ' + __dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
+app.get('/signup', (req, res) => {
+  console.log('__dirname: ' + __dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
+app.get('/deposit', (req, res) => {
+  console.log('__dirname: ' + __dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
 app.get('/withdraw', (req, res) => {
+  console.log('__dirname: ' + __dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
+app.get('/alldata', (req, res) => {
   console.log('__dirname: ' + __dirname);
   //res.sendFile(__dirname + '/frontend/index.html');
   res.sendFile(__dirname + '/frontend/build/index.html');
