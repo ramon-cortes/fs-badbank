@@ -72,7 +72,7 @@ function Contents({ action, status, setStatus }) {
         <div className="aligh-right">
           Balance: {status.balance}
         </div>
-        <div className="carddw-contents">
+        <div className="carddw-contentsdw">
           <br />
           <input type="number" id="carddw-input" onChange={validateTransaction} />
           <br />

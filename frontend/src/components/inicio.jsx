@@ -1,5 +1,4 @@
-//import { useContext } from "react";
-//import { ValueContext } from '../App';
+import { Link } from 'react-router-dom';
 
 export default function Inicio({ status }) {
   //const logStatus = useContext(ValueContext);
@@ -16,7 +15,7 @@ export default function Inicio({ status }) {
       return (
         <>
           <img src={require('../img/user-no.gif')} alt="not-logged avatar" width={45} />
-          Login or SignUp to perform transactions
+          <Link className='link' to='/login'>Login</Link> or <Link className='link' to='/signup'>SignUp</Link> to perform transactions
         </>        
       );
     } 
@@ -92,10 +91,16 @@ export default function Inicio({ status }) {
               MongoDB Docker container & "docker exec -it [db-name] bash" only to test Mongo commands
             </li>
             <li>
-              Weirdly enough Mongo connections take ≈10 seconds when working from my development environment but ≈1 sec when deployed.
+              Weirdly enough Mongo connections take ≈10 seconds when working from my development environment but ≈1 sec when deployed
             </li>
             <li>
               Created a DAL
+            </li>
+          </ul>
+          Authentication
+          <ul>
+            <li>
+              Google's Firebase Email Authentication (signInWithEmailAndPassword)
             </li>
           </ul>
           Frontend
@@ -110,7 +115,11 @@ export default function Inicio({ status }) {
               BrowserRouter for routing
             </li>    
             <li>
-              process.env.NODE_ENV variable to know if in "production" mode. Then set a variable ("LOCATION") to "http://ramon-cortesfullstackbankingap.herokuapp.com/" or "http://localhost:3141". I think this prevents the need to use a "proxy" in the Frontend's package.json file
+              process.env.NODE_ENV variable to know if in "production" mode. Then set a variable ("LOCATION") to
+              <br />
+              "http://ramon-cortesfullstackbankingap.herokuapp.com/" or
+              <br />
+              "http://localhost:3141". I think this prevents the need to use a "proxy" in the Frontend's package.json file
             </li>   
             <li>
               As expected the use of useState useEffect & createContext
@@ -120,6 +129,9 @@ export default function Inicio({ status }) {
             </li>   
             <li>
             RegEx to validate email format copied from stackoverflow
+            </li>
+            <li>
+              I wanted to experiment a little bit with CSS, so I did not use Bootstrap on this project
             </li>
           </ul>
         </div>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { ValueContext } from '../App';
+import { Link } from 'react-router-dom';
 
 // Validation (some)
 function validateSignup(setError, setDisabledButton) {
@@ -66,44 +67,67 @@ function ReturnSignup({ status, setStatus, setError, error }) {
   const [disabledButton, setDisabledButton] = useState(true);
   if (!status.log) {
     return (
-      <div>
-        Página de Signup
-        <br />
-        <input 
-          id="name"
-          onChange={() => validateSignup(setError, setDisabledButton)} 
-          type="text"
-          placeholder="Name"
-        />
-        <br />
-        <input 
-          id="email"
-          onChange={() => validateSignup(setError, setDisabledButton)}
-          type="text" 
-          placeholder="Email"
-        />
-        <br />
-        <input 
-          id="password"
-          onChange={() => validateSignup(setError, setDisabledButton)}
-          type="password" 
-          placeholder="Password"
-        />
-        <br />          
-        Admin <input id="admin" type="checkbox"/>
-        <br />
-        <div className='smaller'>
-          (Only Admins can view "All Data")
-        </div>
-        <button id='signup-button' disabled={disabledButton} onClick={() => axiosSignUp(status, setStatus, setError, LOCATION)}>Signup</button>
-        <br />
-        <div className='signup-error'>
-          {error}
-        </div>
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            Signup page
+          </div>
+          <div className="carddw-contents2">
+            <input 
+              className='inputs'
+              id="name"
+              onChange={() => validateSignup(setError, setDisabledButton)} 
+              type="text"
+              placeholder="Name"
+            />
+            <br />
+            <input 
+              className='inputs'
+              id="email"
+              onChange={() => validateSignup(setError, setDisabledButton)}
+              type="text" 
+              placeholder="Email"
+            />
+            <br />
+            <input 
+              className='inputs'
+              id="password"
+              onChange={() => validateSignup(setError, setDisabledButton)}
+              type="password" 
+              placeholder="Password"
+            />
+            <br />          
+            Admin <input className='input-checkbox' id="admin" type="checkbox"/>
+            <br />
+            <div className='smaller'>
+              * Only Admins can view full details (including Logs !) at "All Data"
+            </div>
+            <button id='signup-button' disabled={disabledButton} onClick={() => axiosSignUp(status, setStatus, setError, LOCATION)}>Signup</button>
+            <br />
+            <div className='signup-error'>
+              {error}
+            </div>
+          </div>
+          
+        </div>        
       </div>
     );
   } else {
-    return 'User: ' + status.user + ' logged in. Logout before Creating/Logging a new user';
+    return (
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            Signup Page
+          </div>
+          <div className="carddw-contents2">
+            Welcome {status.user} !
+            <br />
+            <br />
+            <Link className='link' to='/logout'>Logout</Link> before Creating/Logging a new user
+          </div>
+        </div>        
+      </div>
+    );
   }
 }
 

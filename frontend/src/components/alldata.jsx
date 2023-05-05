@@ -77,15 +77,29 @@ export default function AllData({ status, allData, setAllData }) {
       // Not logged in
     } else {
       return (
-        <div>
-          Loading All Data. Please wait
+        <div className='card-wrapper'>
+          <div className='carddw'>
+            <div className="carddw-header">
+              All Data Page
+            </div>
+            <div className="carddw-contents2">
+              Loading Data, please wait
+            </div>
+          </div>        
         </div>
       );
     }
   } else {
     return (
-      <div>
-        All Data page. Signup or Login to view Data
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            All Data Page
+          </div>
+          <div className="carddw-contents2">
+            Signup or Login to view Data
+          </div>
+        </div>        
       </div>
     );
   }

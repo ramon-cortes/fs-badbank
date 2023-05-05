@@ -29,20 +29,31 @@ export default function Logout({ status, setStatus }) {
   //const response = axiosLogout(status, setStatus);
 
   useEffect(() => {
-    const response = axiosLogout(status, setStatus, LOCATION);
+    if (status.log) {
+      const response = axiosLogout(status, setStatus, LOCATION);
+    }
   }, []);
 
   function LoggedOut() {
     if (!status.log) {
       return (
-        <div>
-          Logged out Successfully
-        </div>
-      );
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            Logout Page
+          </div>
+          <div className="carddw-contents2">
+            Logged out Successfuly
+          </div>
+        </div>        
+      </div>
+    );
     } else {
       return (
         <div>
           Error logging out:
+          <br />
+          known bug... I mean, it's the first time it happens
         </div>
       );
     }

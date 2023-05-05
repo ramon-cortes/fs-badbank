@@ -38,22 +38,38 @@ function LoginOrLogout({ status, setStatus }) {
   const [error, setError] = useState('');
   if (!status.log) {
     return (
-      <div>
-        Página de Login
-        <br />
-        <input id="email" type="text" placeholder="Email"/>
-        <br />
-        <input id="password" type="password" placeholder="Password"/>
-        <br />
-        <button onClick={() => axiosLogin(status, setStatus, setError, LOCATION)}>Login</button>
-        <br />
-        <div className='signup-error'>
-          {error}
-        </div>
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            Login Page
+          </div>
+          <div className="carddw-contents2">
+            <input className='inputs' id="email" type="text" placeholder="Email"/>
+            <br />
+            <input className='inputs' id="password" type="password" placeholder="Password"/>
+            <br />
+            <button onClick={() => axiosLogin(status, setStatus, setError, LOCATION)}>Login</button>
+            <br />
+            <div className='signup-error'>
+              {error}
+            </div>
+          </div>
+        </div>        
       </div>
     );
   } else {
-    return 'Welcome: ' + status.user;
+    return (
+      <div className='card-wrapper'>
+        <div className='carddw'>
+          <div className="carddw-header">
+            Login Page
+          </div>
+          <div className="carddw-contents2">
+            Welcome {status.user} !
+          </div>
+        </div>        
+      </div>
+    );
   }
 }
 

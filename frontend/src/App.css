@@ -103,14 +103,19 @@ body {
   color: white;
 }
 
+.card-wrapper {
+  background-color: rgb(253, 221, 152);
+  padding-top: 10px;
+  height: calc(100vh - 110px);
+}
+
 .carddw {
   position: relative;
   left: 25%;
   border: 2px solid black;
   border-radius: 5px;
   width: 250px;
-  height: 275px;
-  margin-top: 10px;
+  height: 260px;
 }
 
 .carddw-header {
@@ -127,11 +132,28 @@ body {
   text-align: right;
 }
 
-.carddw-contents {
+.carddw-contentsdw {  
+  background-color: white;
   padding: 2px;
   text-align: center;
-  height: 80%;
+  height: 205px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   position: relative;
+}
+
+.carddw-contents {
+  background-color: white;
+  padding: 2px;
+  text-align: center;
+  height: 229px;
+  position: relative;
+}
+
+.carddw-contents2 {
+  background-color: white;
+  padding: 5px;
+  height: 223px;
 }
 
 #carddw-input {
@@ -163,6 +185,7 @@ table, th, tr, td {
 .alldata-normal {
   background-color: rgb(253, 221, 152);
   padding: 5px;
+  height: calc(100vh - 110px);
 }
 
 .alldata-admin {
@@ -207,4 +230,48 @@ table, th, tr, td {
 
 .inicio-padding {
   padding: 5px;
+}
+
+.inputs {
+  font-family: 'Shantell Sans';
+  width: 170px;
+  margin-bottom: 2px;
+}
+
+.input-checkbox {  
+  font-family: 'Shantell Sans';
+  font-size: 2rem;
+}
+
+button {
+  font-family: 'Shantell Sans';
+  margin-top: 5px;
+  border: 2px solid gold;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgb(209, 178, 0);
+  border: 2px solid black;
+}
+
+button:active {
+  color: rgb(209, 178, 0);
+  background-color: rgb(0, 0, 0);
+}
+
+button:disabled {
+  color: rgb(190, 190, 190);
+}
+
+button:disabled:hover {
+  background-color: rgb(233, 233, 233);
+  border: 2px solid gold;
+}
+
+button:disabled:active {
+  color: rgb(190, 190, 190);
+  background-color: rgb(233, 233, 233);
+  border: 2px solid gold;
 }

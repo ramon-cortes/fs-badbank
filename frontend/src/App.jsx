@@ -46,6 +46,7 @@ function App() {
         if (response.data.email) {
           //console.log('already logged in = true');
           //console.log(response.data.user);
+          // All Data BUG !: Se pierde si es admin al hacer refresh
           setStatus({...status, log: true, user: response.data.email});
         } else {
           //console.log('already logged in = false');
