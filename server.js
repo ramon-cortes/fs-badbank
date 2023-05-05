@@ -15,6 +15,14 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);*/
 
+// ---------"Refresh" Routes------------
+app.get('*', (req, res) => {
+  console.log(__dirname);
+  //res.sendFile(__dirname + '/frontend/index.html');
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
+// ---------"Refresh" Routes------------
+
 
 // Probar y usar? ↓
 //app.use(express.json());
@@ -65,7 +73,7 @@ app.get('/alreadyloggedin', async (req, res) => {
   let userData = {};
   let loggedin = false;
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
+  await onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in
       //const uid = user.uid;
@@ -78,8 +86,22 @@ app.get('/alreadyloggedin', async (req, res) => {
       //console.log('user is NOT logged in');
       //return res.send({ loggedin: false });
     }
+    //res.send(userData);
+  });
+  if (loggedin) {
+    //console.log(chalk.bgRed(JSON.stringify(userData)));
+    // ----------Mongo DAL----------
+    const userInfo = await dalRead(userData.email);
+    const userInfoBasic = {
+      email: userInfo[0].email,
+      admin: userInfo[0].admin,
+      balance: userInfo[0].balance
+    };
+    // ----------Mongo DAL----------
+    res.send(userInfoBasic);
+  } else {
     res.send(userData);
-  });  
+  }  
 });
 
 //Sign Up

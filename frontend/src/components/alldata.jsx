@@ -38,10 +38,10 @@ export default function AllData({ status, allData, setAllData }) {
   // Get All Data !
   useEffect(() => {
     if (status.log) {
+      //console.log(status.user);
       axiosAllData(status, setError, allData, setAllData, LOCATION);
     }
   }, []);  
-  
     
   if (status.log) {
     //console.log(allData);
