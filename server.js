@@ -16,8 +16,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // ---------"Refresh" Routes------------
-app.get('*', (req, res) => {
-  console.log(__dirname);
+app.get('/withdraw', (req, res) => {
+  console.log('__dirname: ' + __dirname);
   //res.sendFile(__dirname + '/frontend/index.html');
   res.sendFile(__dirname + '/frontend/build/index.html');
 });
